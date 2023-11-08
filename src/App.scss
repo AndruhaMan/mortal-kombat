@@ -9,8 +9,12 @@
 
 body {
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: MortalKombat;
   font-style: italic;
   color: white;
+  background-color: #000;
   letter-spacing: 3px;
 }

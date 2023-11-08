@@ -4,9 +4,10 @@ import { characters } from '../../characters';
 
 type Props = {
   currentCharacter: number,
-}
+  isSelected: boolean,
+};
 
-export const CharactersList: React.FC<Props> = ({ currentCharacter }) => {
+export const CharactersList: React.FC<Props> = ({ currentCharacter, isSelected }) => {
   return (
     <div className="CharactersList">
       {characters.map(character => (
@@ -15,7 +16,8 @@ export const CharactersList: React.FC<Props> = ({ currentCharacter }) => {
         className={classNames(
           'CharactersList__icon',
           `CharactersList__icon--${character}`,
-          { 'CharactersList__icon--selected': character === characters[currentCharacter] },
+          { 'CharactersList__icon--current': character === characters[currentCharacter] },
+          { 'CharactersList__icon--selected': character === characters[currentCharacter] && isSelected },
         )}
         >
         </div>

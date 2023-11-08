@@ -18,7 +18,7 @@
       }
     }
 
-    &--selected {
+    &--current {
       position: relative;
       outline: 5px solid rgb(1, 204, 1);
       &::after {
@@ -29,6 +29,20 @@
         font-size: 40px;
         font-weight: bold;
         color: rgb(1, 204, 1);
+      }
+    }
+
+    &--selected {
+      position: relative;
+      outline: 5px solid rgb(0, 117, 0);
+      &::after {
+        position: absolute;
+        top: 20px;
+        left: 32px;
+        content: "1";
+        font-size: 40px;
+        font-weight: bold;
+        color: rgb(0, 117, 0);
       }
     }
   }
