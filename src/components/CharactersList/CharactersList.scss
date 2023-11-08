@@ -1,0 +1,20 @@
+.CharactersList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 480px;
+
+  &__icon {
+    height: 116px;
+    width: 92px;
+    background-size: cover;
+
+    $characters: 'subzero', 'scorpion', 'kitana', 'reptile', 'ermac', 'shangtsung', 'sheeva', 'liukang', 'kunglao', 'kano', 'kabal', 'jax', 'nightwolf', 'cyrax', 'sektor';
+
+    @each $character in $characters {
+      &--#{$character} {
+        background-image: url('../../../public/images/icons/#{$character}.png');
+      }
+    }
+  }
+}
