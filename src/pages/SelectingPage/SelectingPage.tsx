@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { CharactersList } from '../../components/CharactersList';
 import { Character } from '../../types/character';
-import './SelectingPage.scss';
 import { canSwitchDown, canSwitchLeft, canSwitchRight, canSwitchUp, selectRandomLocation } from '../../utils/helpers';
 import { characters } from '../../data/characters';
+
+import './SelectingPage.scss';
 
 type Props = {
   setFirstSelectedCharacter: (character: Character | null) => void
@@ -18,8 +19,10 @@ export const SelectingPage: React.FC<Props> = ({
   const [currentSecondCharacter, setCurrentSecondCharacter] = useState(4);
   const [isFirstSelected, setIsFirstSelected] = useState(false);
   const [isSecondSelected, setIsSecondSelected] = useState(false);
+
   const location = useRef(selectRandomLocation()).current;
   const pageRef = useRef<HTMLDivElement>(null);
+  
 
   const currentPosition = isFirstSelected
     ? currentSecondCharacter
@@ -36,6 +39,7 @@ export const SelectingPage: React.FC<Props> = ({
     if (pageRef.current) {
       pageRef.current.focus();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleCharacterChange = (event: React.KeyboardEvent<HTMLDivElement>) => {

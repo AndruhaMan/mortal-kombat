@@ -1,5 +1,8 @@
 import { Character } from '../../types/character';
+import sound from './vs.mp3';
+
 import './VsPage.scss';
+import { useEffect, useState } from 'react';
 
 type Props = {
   firstSelectedCharacter: Character | null,
@@ -7,6 +10,12 @@ type Props = {
 };
 
 export const VsPage: React.FC<Props> = ({ firstSelectedCharacter, secondSelectedCharacter }) => {
+  const [audio] = useState(new Audio(sound));
+
+  useEffect(() => {
+    audio.play();
+  }, []);
+
   return (
     <div className="VsPage">
       {firstSelectedCharacter && (

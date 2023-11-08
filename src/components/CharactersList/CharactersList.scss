@@ -14,7 +14,7 @@
 
     @each $character in $characters {
       &--#{$character} {
-        background-image: url('../../../public/images/icons/#{$character}.png');
+        background-image: url('./characters-icons/#{$character}.png');
       }
     }
 
