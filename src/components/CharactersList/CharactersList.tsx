@@ -1,18 +1,24 @@
+import classNames from 'classnames';
 import './CharactersList.scss'
+import { characters } from '../../characters';
 
-const characters = [
-  'subzero', 'scorpion', 'kitana',
-  'reptile', 'ermac', 'shangtsung',
-  'sheeva', 'liukang', 'kunglao',
-  'kano', 'kabal', 'jax',
-  'nightwolf', 'cyrax', 'sektor'
-];
+type Props = {
+  currentCharacter: number,
+}
 
-export const CharactersList = () => {
+export const CharactersList: React.FC<Props> = ({ currentCharacter }) => {
   return (
     <div className="CharactersList">
       {characters.map(character => (
-        <div className={`CharactersList__icon CharactersList__icon--${character}`}></div>
+        <div
+        key={character}
+        className={classNames(
+          'CharactersList__icon',
+          `CharactersList__icon--${character}`,
+          { 'CharactersList__icon--selected': character === characters[currentCharacter] },
+        )}
+        >
+        </div>
       ))}
     </div>
   )

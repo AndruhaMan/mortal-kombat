@@ -8,12 +8,27 @@
     height: 116px;
     width: 92px;
     background-size: cover;
+    box-shadow: inset 2px 2px black, inset -2px -2px rgb(158, 156, 156);
 
     $characters: 'subzero', 'scorpion', 'kitana', 'reptile', 'ermac', 'shangtsung', 'sheeva', 'liukang', 'kunglao', 'kano', 'kabal', 'jax', 'nightwolf', 'cyrax', 'sektor';
 
     @each $character in $characters {
       &--#{$character} {
         background-image: url('../../../public/images/icons/#{$character}.png');
+      }
+    }
+
+    &--selected {
+      position: relative;
+      outline: 5px solid rgb(1, 204, 1);
+      &::after {
+        position: absolute;
+        top: 20px;
+        left: 32px;
+        content: "1";
+        font-size: 40px;
+        font-weight: bold;
+        color: rgb(1, 204, 1);
       }
     }
   }
