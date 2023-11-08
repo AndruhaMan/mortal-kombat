@@ -1,4 +1,4 @@
-import { Character } from "./types/character";
+import { Character } from "../types/character";
 
 export const characters: Character[] = [
   'subzero', 'scorpion', 'kitana',

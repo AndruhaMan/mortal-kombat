@@ -2,8 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { CharactersList } from '../../components/CharactersList';
 import { Character } from '../../types/character';
 import './SelectingPage.scss';
-import { canSwitchDown, canSwitchLeft, canSwitchRight, canSwitchUp } from '../../utils/helpers';
-import { characters } from '../../characters';
+import { canSwitchDown, canSwitchLeft, canSwitchRight, canSwitchUp, selectRandomLocation } from '../../utils/helpers';
+import { characters } from '../../data/characters';
 
 type Props = {
   setFirstSelectedCharacter: (character: Character | null) => void
@@ -18,6 +18,7 @@ export const SelectingPage: React.FC<Props> = ({
   const [currentSecondCharacter, setCurrentSecondCharacter] = useState(4);
   const [isFirstSelected, setIsFirstSelected] = useState(false);
   const [isSecondSelected, setIsSecondSelected] = useState(false);
+  const location = useRef(selectRandomLocation()).current;
   const pageRef = useRef<HTMLDivElement>(null);
 
   const currentPosition = isFirstSelected
@@ -78,7 +79,9 @@ export const SelectingPage: React.FC<Props> = ({
         isFirstSelected={isFirstSelected}
         isSecondSelected={isSecondSelected}
       />
-      <p className="SelectingPage__map">Kombat zone: Soul Chamber</p>
+      <p className="SelectingPage__map">
+        {`Kombat zone: ${location}`}
+      </p>
     </div>
   );
 }

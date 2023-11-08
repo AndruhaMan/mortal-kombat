@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import './CharactersList.scss'
-import { characters } from '../../characters';
+import { characters } from '../../data/characters';
 
 type Props = {
   currentFirstCharacter: number,
