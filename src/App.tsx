@@ -6,11 +6,12 @@ import { Character } from './types/character';
 import { VsPage } from './pages/VsPage';
 
 export const App = () => {
-  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
+  const [firstSelectedCharacter, setFirstSelectedCharacter] = useState<Character | null>(null);
+  const [secondSelectedCharacter, setSecondSelectedCharacter] = useState<Character | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (selectedCharacter) {
+    if (firstSelectedCharacter && secondSelectedCharacter) {
       setTimeout(() => {
         navigate('/vs');
 
@@ -19,8 +20,8 @@ export const App = () => {
         }, 4000)
       }, 2000);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedCharacter]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [firstSelectedCharacter, secondSelectedCharacter]);
 
   return (
     <div className="App">
@@ -32,12 +33,22 @@ export const App = () => {
 
         <Route
           path="/select"
-          element={<SelectingPage setSelectedCharacter={setSelectedCharacter} />}
+          element={
+            <SelectingPage
+              setFirstSelectedCharacter={setFirstSelectedCharacter}
+              setSecondSelectedCharacter={setSecondSelectedCharacter}
+            />
+          }
         />
 
         <Route
           path="/vs"
-          element={<VsPage selectedCharacter={selectedCharacter} />}
+          element={
+            <VsPage
+              firstSelectedCharacter={firstSelectedCharacter}
+              secondSelectedCharacter={secondSelectedCharacter}
+            />
+          }
         />
       </Routes>
     </div>

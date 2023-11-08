@@ -2,16 +2,19 @@ import { Character } from '../../types/character';
 import './VsPage.scss';
 
 type Props = {
-  selectedCharacter: Character | null,
+  firstSelectedCharacter: Character | null,
+  secondSelectedCharacter: Character | null,
 };
 
-export const VsPage: React.FC<Props> = ({ selectedCharacter }) => {
+export const VsPage: React.FC<Props> = ({ firstSelectedCharacter, secondSelectedCharacter }) => {
   return (
     <div className="VsPage">
-      {selectedCharacter && (
-        <div className={`VsPage__character VsPage__character--${selectedCharacter} `}></div>
+      {firstSelectedCharacter && (
+        <div className={`VsPage__character VsPage__character--${firstSelectedCharacter} `}></div>
       )}
-      <div className="VsPage__character VsPage__character--second"></div>
+      {secondSelectedCharacter && (
+        <div className={`VsPage__character VsPage__character--second VsPage__character--${secondSelectedCharacter}`}></div>
+      )}
     </div>
   );
 }

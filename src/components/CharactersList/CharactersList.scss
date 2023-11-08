@@ -18,12 +18,12 @@
       }
     }
 
-    &--current {
+    &--current-first {
       position: relative;
       outline: 5px solid rgb(1, 204, 1);
       &::after {
         position: absolute;
-        top: 20px;
+        top: 15px;
         left: 32px;
         content: "1";
         font-size: 40px;
@@ -32,17 +32,91 @@
       }
     }
 
-    &--selected {
+    &--current-second {
+      position: relative;
+      outline: 5px solid rgb(255, 29, 29);
+      &::after {
+        position: absolute;
+        bottom: 15px;
+        left: 32px;
+        content: "2";
+        font-size: 40px;
+        font-weight: bold;
+        color: rgb(255, 29, 29);
+      }
+    }
+
+    &--current-both {
+      position: relative;
+      &::after {
+        position: absolute;
+        top: 15px;
+        left: 32px;
+        content: "1";
+        font-size: 40px;
+        font-weight: bold;
+        color: rgb(1, 204, 1);
+      }
+
+      &::before {
+        position: absolute;
+        bottom: 15px;
+        left: 32px;
+        content: "2";
+        font-size: 40px;
+        font-weight: bold;
+        color: rgb(255, 29, 29);
+      }
+    }
+
+    &--selected-first {
       position: relative;
       outline: 5px solid rgb(0, 117, 0);
       &::after {
         position: absolute;
-        top: 20px;
+        top: 15px;
         left: 32px;
         content: "1";
         font-size: 40px;
         font-weight: bold;
         color: rgb(0, 117, 0);
+      }
+    }
+
+    &--selected-second {
+      position: relative;
+      outline: 5px solid rgb(165, 17, 17);
+      &::after {
+        position: absolute;
+        bottom: 15px;
+        left: 32px;
+        content: "2";
+        font-size: 40px;
+        font-weight: bold;
+        color: rgb(165, 17, 17);
+      }
+    }
+
+    &--selected-both {
+      position: relative;
+      &::after {
+        position: absolute;
+        top: 15px;
+        left: 32px;
+        content: "1";
+        font-size: 40px;
+        font-weight: bold;
+        color: rgb(0, 117, 0);
+      }
+
+      &::before {
+        position: absolute;
+        bottom: 15px;
+        left: 32px;
+        content: "2";
+        font-size: 40px;
+        font-weight: bold;
+        color: rgb(165, 17, 17);
       }
     }
   }
