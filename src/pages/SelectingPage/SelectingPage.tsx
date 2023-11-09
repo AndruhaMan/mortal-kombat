@@ -3,6 +3,8 @@ import { CharactersList } from '../../components/CharactersList';
 import { Character } from '../../types/character';
 import { canSwitchDown, canSwitchLeft, canSwitchRight, canSwitchUp, selectRandomLocation } from '../../utils/helpers';
 import { characters } from '../../data/characters';
+import selectingSound from './selecting-sound.mp3';
+import acceptingSound from './accepting-sound.mp3';
 
 import './SelectingPage.scss';
 
@@ -42,6 +44,14 @@ export const SelectingPage: React.FC<Props> = ({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const playSelectingSound = () => {
+    new Audio(selectingSound).play();
+  }
+
+  const playAcceptingSound = () => {
+    new Audio(acceptingSound).play();
+  }
+
   const handleCharacterChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (isFirstSelected && isSecondSelected) {
       return;
@@ -49,18 +59,22 @@ export const SelectingPage: React.FC<Props> = ({
 
     if (event.key === 'ArrowRight' && canSwitchRight(currentPosition)) {
       setCurrentPosition(current => current + 1);
+      playSelectingSound();
     }
 
     if (event.key === 'ArrowLeft' && canSwitchLeft(currentPosition)) {
       setCurrentPosition(current => current - 1);
+      playSelectingSound();
     }
 
     if (event.key === 'ArrowDown' && canSwitchDown(currentPosition)) {
       setCurrentPosition(current => current + 5);
+      playSelectingSound();
     }
 
     if (event.key === 'ArrowUp' && canSwitchUp(currentPosition)) {
       setCurrentPosition(current => current - 5);
+      playSelectingSound();
     }
 
     if (event.key === 'Enter') {
@@ -71,6 +85,8 @@ export const SelectingPage: React.FC<Props> = ({
         setFirstSelectedCharacter(characters[currentPosition]);
         setIsFirstSelected(true);
       }
+
+      playAcceptingSound()
     }
   }
 

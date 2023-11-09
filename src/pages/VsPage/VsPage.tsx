@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { VersusCodes } from '../../components/VersusCodes';
 import { Character } from '../../types/character';
 import { incrementNumberInArray } from '../../utils/helpers';
-import sound from './vs.mp3';
+import sound from './vs-sound.mp3';
 
 import './VsPage.scss';
 
