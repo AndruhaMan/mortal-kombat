@@ -1,0 +1,29 @@
+.VersusCodes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  position: absolute;
+  margin-inline: auto;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  width: 261px;
+  height: 46px;
+  background-color: #777;
+
+  &__code {
+    width: 40px;
+    height: 40px;
+    background-image: url('./versus-codes/0.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: inset 2px 2px black, inset -2px -2px rgb(158, 156, 156);
+
+    @for $code from 0 through 9 {
+      &--#{$code} {
+        background-image: url('./versus-codes/#{$code}.png');
+      }
+    }
+  }
+}
