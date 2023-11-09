@@ -31,3 +31,55 @@ export function incrementNumberInArray(array: number[], numIndex: number) {
     return num;
   })
 }
+
+export function handleSwitch(
+  direction: 'up' | 'left' | 'right' | 'down',
+  position: number,
+  setPosition: (value: React.SetStateAction<number>) => void,
+  isSelected: boolean,
+) {
+  if (isSelected) {
+    return;
+  }
+
+  switch (direction) {
+    case 'up': {
+      setPosition(current => {
+        return canSwitchUp(current)
+          ? (current - 5)
+          : current;
+      })
+      break;
+    }
+
+    case 'down': {
+      setPosition(current => {
+        return canSwitchDown(current)
+          ? (current + 5)
+          : current;
+      })
+      break;
+    }
+
+    case 'right': {
+      setPosition(current => {
+        return canSwitchRight(current)
+          ? (current + 1)
+          : current;
+      })
+      break;
+    }
+
+    case 'left': {
+      setPosition(current => {
+        return canSwitchLeft(current)
+          ? (current - 1)
+          : current;
+      })
+      break;
+    }
+
+    default:
+      break;
+  }
+}

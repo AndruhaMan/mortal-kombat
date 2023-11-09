@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { CharactersList } from '../../components/CharactersList';
 import { Character } from '../../types/character';
-import { canSwitchDown, canSwitchLeft, canSwitchRight, canSwitchUp, selectRandomLocation } from '../../utils/helpers';
+import { canSwitchDown, canSwitchLeft, canSwitchRight, canSwitchUp, handleSwitch, selectRandomLocation } from '../../utils/helpers';
 import { characters } from '../../data/characters';
 import selectingSound from './selecting-sound.mp3';
 import acceptingSound from './accepting-sound.mp3';
@@ -24,15 +24,6 @@ export const SelectingPage: React.FC<Props> = ({
 
   const location = useRef(selectRandomLocation()).current;
   const pageRef = useRef<HTMLDivElement>(null);
-  
-
-  const currentPosition = isFirstSelected
-    ? currentSecondCharacter
-    : currentFirstCharacter;
-
-  const setCurrentPosition = isFirstSelected
-    ? setCurrentSecondCharacter
-    : setCurrentFirstCharacter;
 
   useEffect(() => {
     setFirstSelectedCharacter(null);
@@ -41,50 +32,68 @@ export const SelectingPage: React.FC<Props> = ({
     if (pageRef.current) {
       pageRef.current.focus();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const playSelectingSound = () => {
+  const playSelectingSound = useCallback(() => {
     new Audio(selectingSound).play();
-  }
+  }, []);
 
-  const playAcceptingSound = () => {
+  const playAcceptingSound = useCallback(() => {
     new Audio(acceptingSound).play();
-  }
+  }, []);
 
   const handleCharacterChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (isFirstSelected && isSecondSelected) {
-      return;
-    }
-
-    if (event.key === 'ArrowRight' && canSwitchRight(currentPosition)) {
-      setCurrentPosition(current => current + 1);
+    if (event.code === 'KeyD') {
+      handleSwitch('right', currentFirstCharacter, setCurrentFirstCharacter, isFirstSelected)
       playSelectingSound();
     }
 
-    if (event.key === 'ArrowLeft' && canSwitchLeft(currentPosition)) {
-      setCurrentPosition(current => current - 1);
+    if (event.code === 'KeyA') {
+      handleSwitch('left', currentFirstCharacter, setCurrentFirstCharacter, isFirstSelected)
       playSelectingSound();
     }
 
-    if (event.key === 'ArrowDown' && canSwitchDown(currentPosition)) {
-      setCurrentPosition(current => current + 5);
+    if (event.code === 'KeyS') {
+      handleSwitch('down', currentFirstCharacter, setCurrentFirstCharacter, isFirstSelected)
       playSelectingSound();
     }
 
-    if (event.key === 'ArrowUp' && canSwitchUp(currentPosition)) {
-      setCurrentPosition(current => current - 5);
+    if (event.code === 'KeyW') {
+      handleSwitch('up', currentFirstCharacter, setCurrentFirstCharacter, isFirstSelected)
       playSelectingSound();
     }
 
-    if (event.key === 'Enter') {
-      if (isFirstSelected) {
-        setSecondSelectedCharacter(characters[currentPosition]);
-        setIsSecondSelected(true);
-      } else {
-        setFirstSelectedCharacter(characters[currentPosition]);
-        setIsFirstSelected(true);
-      }
+    if (event.code === 'ArrowRight') {
+      handleSwitch('right', currentSecondCharacter, setCurrentSecondCharacter, isSecondSelected)
+      playSelectingSound();
+    }
+
+    if (event.code === 'ArrowLeft') {
+      handleSwitch('left', currentSecondCharacter, setCurrentSecondCharacter, isSecondSelected)
+      playSelectingSound();
+    }
+
+    if (event.code === 'ArrowDown') {
+      handleSwitch('down', currentSecondCharacter, setCurrentSecondCharacter, isSecondSelected)
+      playSelectingSound();
+    }
+
+    if (event.code === 'ArrowUp') {
+      handleSwitch('up', currentSecondCharacter, setCurrentSecondCharacter, isSecondSelected)
+      playSelectingSound();
+    }
+
+    if (event.code === 'Space') {
+      setFirstSelectedCharacter(characters[currentFirstCharacter]);
+      setIsFirstSelected(true);
+
+      playAcceptingSound()
+    }
+
+    if (event.code === 'Enter') {
+      setSecondSelectedCharacter(characters[currentSecondCharacter]);
+      setIsSecondSelected(true);
 
       playAcceptingSound()
     }
