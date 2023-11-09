@@ -22,8 +22,12 @@ export function selectRandomLocation() {
 
 export function incrementNumberInArray(array: number[], numIndex: number) {
   return array.map((num, index) => {
-    return index === numIndex && num < 9
-      ? num + 1
-      : num;
+    if (index === numIndex) {
+      return num < 9
+        ? num + 1
+        : 0;
+    }
+
+    return num;
   })
 }
