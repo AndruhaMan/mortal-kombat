@@ -4,6 +4,7 @@ import './App.scss';
 import { SelectingPage } from './pages/SelectingPage';
 import { Character } from './types/character';
 import { VsPage } from './pages/VsPage';
+import { FatalityPage } from './pages/FatalityPage';
 
 export const App = () => {
   const [firstSelectedCharacter, setFirstSelectedCharacter] = useState<Character | null>(null);
@@ -14,10 +15,6 @@ export const App = () => {
     if (firstSelectedCharacter && secondSelectedCharacter) {
       setTimeout(() => {
         navigate('/vs');
-
-        setTimeout(() => {
-          navigate('/select');
-        }, 4000)
       }, 2000);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,6 +45,13 @@ export const App = () => {
               firstSelectedCharacter={firstSelectedCharacter}
               secondSelectedCharacter={secondSelectedCharacter}
             />
+          }
+        />
+
+        <Route
+          path="/fatality"
+          element={
+            <FatalityPage />
           }
         />
       </Routes>

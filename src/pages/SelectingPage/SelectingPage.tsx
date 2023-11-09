@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { CharactersList } from '../../components/CharactersList';
 import { Character } from '../../types/character';
-import { canSwitchDown, canSwitchLeft, canSwitchRight, canSwitchUp, handleSwitch, selectRandomLocation } from '../../utils/helpers';
+import { handleSwitch, selectRandomLocation } from '../../utils/helpers';
 import { characters } from '../../data/characters';
 import selectingSound from './selecting-sound.mp3';
 import acceptingSound from './accepting-sound.mp3';

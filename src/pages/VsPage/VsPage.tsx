@@ -1,4 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { VersusCodes } from '../../components/VersusCodes';
 import { Character } from '../../types/character';
 import { incrementNumberInArray } from '../../utils/helpers';
@@ -12,7 +14,9 @@ type Props = {
 };
 
 export const VsPage: React.FC<Props> = ({ firstSelectedCharacter, secondSelectedCharacter }) => {
+  const navigate = useNavigate();
   const [versusCodes, setVersusCodes] = useState([0, 0, 0, 0, 0, 0]);
+  const [isFatality, setIsFatality] = useState(false);
   const pageRef = useRef<HTMLDivElement>(null);
   const audio = useRef(new Audio(sound)).current;
 
@@ -22,8 +26,25 @@ export const VsPage: React.FC<Props> = ({ firstSelectedCharacter, secondSelected
     if (pageRef.current) {
       pageRef.current.focus();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+    const timer = setTimeout(() => {
+      navigate('/select');
+    }, 4000);
+
+    if (isFatality) {
+      navigate('/fatality');
+    }
+
+    return () => {
+      clearTimeout(timer);
+    }
+  }, [isFatality]);
+
+  useEffect(() => {
+    if (versusCodes.join('') === '666666') {
+      setIsFatality(true);
+    }
+  }, [versusCodes]);
 
   const handleCodesChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
     switch (event.code) {
