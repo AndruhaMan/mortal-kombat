@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import './CharactersList.scss'
 import { characters } from '../../data/characters';
+import { Character } from '../../types/character';
 
 type Props = {
   currentFirstCharacter: number,
@@ -15,24 +16,27 @@ export const CharactersList: React.FC<Props> = ({
   isFirstSelected,
   isSecondSelected,
 }) => {
+  const isFirstPlayer = (character: Character) => character === characters[currentFirstCharacter];
+  const isSecondPlayer = (character: Character) => character === characters[currentSecondCharacter];
+
   return (
-    <div className="CharactersList">
+    <ul className="CharactersList">
       {characters.map(character => (
-        <div
+        <li
           key={character}
           className={classNames(
             'CharactersList__icon',
             `CharactersList__icon--${character}`,
-            { 'CharactersList__icon--current-first': character === characters[currentFirstCharacter] },
-            { 'CharactersList__icon--current-second': character === characters[currentSecondCharacter] },
-            { 'CharactersList__icon--current-both': character === characters[currentFirstCharacter] && currentFirstCharacter === currentSecondCharacter },
-            { 'CharactersList__icon--selected-first': character === characters[currentFirstCharacter] && isFirstSelected },
-            { 'CharactersList__icon--selected-second': character === characters[currentSecondCharacter] && isSecondSelected },
-            { 'CharactersList__icon--selected-both': character === characters[currentFirstCharacter] && currentFirstCharacter === currentSecondCharacter && isSecondSelected },
+            { 'CharactersList__icon--current-first': isFirstPlayer(character) },
+            { 'CharactersList__icon--current-second': isSecondPlayer(character) },
+            { 'CharactersList__icon--current-both': isFirstPlayer(character) && isSecondPlayer(character) },
+            { 'CharactersList__icon--selected-first': isFirstPlayer(character) && isFirstSelected },
+            { 'CharactersList__icon--selected-second': isSecondPlayer(character) && isSecondSelected },
+            { 'CharactersList__icon--selected-both': isFirstPlayer(character) && isSecondPlayer(character) && isFirstSelected && isSecondSelected },
           )}
         >
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }

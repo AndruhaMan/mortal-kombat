@@ -1,4 +1,5 @@
 import { locations } from "../data/locations";
+import { Direction } from "../types/direction";
 
 export function canSwitchRight(currentPos: number) {
   return currentPos !== 4 && currentPos !== 9 && currentPos !== 14;
@@ -33,17 +34,12 @@ export function incrementNumberInArray(array: number[], numIndex: number) {
 }
 
 export function handleSwitch(
-  direction: 'up' | 'left' | 'right' | 'down',
-  position: number,
+  direction: Direction,
   setPosition: (value: React.SetStateAction<number>) => void,
-  isSelected: boolean,
 ) {
-  if (isSelected) {
-    return;
-  }
 
   switch (direction) {
-    case 'up': {
+    case Direction.Up: {
       setPosition(current => {
         return canSwitchUp(current)
           ? (current - 5)
@@ -52,7 +48,7 @@ export function handleSwitch(
       break;
     }
 
-    case 'down': {
+    case Direction.Down: {
       setPosition(current => {
         return canSwitchDown(current)
           ? (current + 5)
@@ -61,7 +57,7 @@ export function handleSwitch(
       break;
     }
 
-    case 'right': {
+    case Direction.Right: {
       setPosition(current => {
         return canSwitchRight(current)
           ? (current + 1)
@@ -70,7 +66,7 @@ export function handleSwitch(
       break;
     }
 
-    case 'left': {
+    case Direction.Left: {
       setPosition(current => {
         return canSwitchLeft(current)
           ? (current - 1)
@@ -81,5 +77,26 @@ export function handleSwitch(
 
     default:
       break;
+  }
+}
+
+export function getDirectionByKeyCode(keyCode: string) {
+  switch (keyCode) {
+    case 'KeyA':
+    case 'ArrowLeft':
+      return Direction.Left;
+
+    case 'KeyD':
+    case 'ArrowRight':
+      return Direction.Right;
+
+    case 'KeyS':
+    case 'ArrowDown':
+      return Direction.Down;
+
+    case 'KeyW':
+    case 'ArrowUp':
+    default:
+      return Direction.Up;
   }
 }

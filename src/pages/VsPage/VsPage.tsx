@@ -1,13 +1,12 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { VersusCodes } from '../../components/VersusCodes';
 import { Character } from '../../types/character';
 import { incrementNumberInArray } from '../../utils/helpers';
-import sound from './vs-sound.mp3';
+import { VersusCodes } from '../../components/VersusCodes';
+import { Toasty } from '../../components/Toasty';
+import sound from '../../sounds/vs-sound.mp3';
 
 import './VsPage.scss';
-import { Toasty } from '../../components/Toasty';
 
 type Props = {
   firstSelectedCharacter: Character | null,
@@ -19,10 +18,9 @@ export const VsPage: React.FC<Props> = ({ firstSelectedCharacter, secondSelected
   const [versusCodes, setVersusCodes] = useState([0, 0, 0, 0, 0, 0]);
   const [isToasty, setIsToasty] = useState(false);
   const pageRef = useRef<HTMLDivElement>(null);
-  const audio = useRef(new Audio(sound)).current;
 
   useEffect(() => {
-    audio.play();
+    new Audio(sound).play();
 
     if (pageRef.current) {
       pageRef.current.focus();
@@ -81,7 +79,7 @@ export const VsPage: React.FC<Props> = ({ firstSelectedCharacter, secondSelected
   }
 
   return (
-    <div className="VsPage" tabIndex={0} onKeyDown={handleCodesChange} ref={pageRef}>
+    <section className="VsPage" tabIndex={0} onKeyDown={handleCodesChange} ref={pageRef}>
       <div className="VsPage__container">
         {firstSelectedCharacter && (
           <div className={`VsPage__character VsPage__character--${firstSelectedCharacter} `}></div>
@@ -97,6 +95,6 @@ export const VsPage: React.FC<Props> = ({ firstSelectedCharacter, secondSelected
       {isToasty && (
         <Toasty />
       )}
-    </div>
+    </section>
   );
 }

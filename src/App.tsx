@@ -17,11 +17,10 @@ export const App = () => {
         navigate('/vs');
       }, 2000);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [firstSelectedCharacter, secondSelectedCharacter]);
 
   return (
-    <div className="App">
+    <main className="App">
       <Routes>
         <Route
           path='/'
@@ -55,6 +54,6 @@ export const App = () => {
           }
         />
       </Routes>
-    </div>
+    </main>
   );
 };

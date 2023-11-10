@@ -1,4 +1,7 @@
 .VersusCodes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,14 +18,14 @@
   &__code {
     width: 40px;
     height: 40px;
-    background-image: url('./versus-codes/0.png');
+    background-image: url('../../images/versus-codes/0.png');
     background-size: cover;
     background-repeat: no-repeat;
     box-shadow: inset 2px 2px black, inset -2px -2px rgb(158, 156, 156);
 
     @for $code from 0 through 9 {
       &--#{$code} {
-        background-image: url('./versus-codes/#{$code}.png');
+        background-image: url('../../images/versus-codes/#{$code}.png');
       }
     }
   }

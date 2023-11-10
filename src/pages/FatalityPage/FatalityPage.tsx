@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './FatalityPage.scss';
-import fatalitySound from './fatality-sound.mp3';
+import fatalitySound from '../../sounds/fatality-sound.mp3';
 
 export const FatalityPage = () => {
   const navigate = useNavigate();

@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { CharactersList } from '../../components/CharactersList';
 import { Character } from '../../types/character';
-import { handleSwitch, selectRandomLocation } from '../../utils/helpers';
+import { getDirectionByKeyCode, handleSwitch, selectRandomLocation } from '../../utils/helpers';
 import { characters } from '../../data/characters';
-import selectingSound from './selecting-sound.mp3';
-import acceptingSound from './accepting-sound.mp3';
+import selectingSound from '../../sounds/selecting-sound.mp3';
+import acceptingSound from '../../sounds/accepting-sound.mp3';
 
 import './SelectingPage.scss';
+import { Direction } from '../../types/direction';
 
 type Props = {
   setFirstSelectedCharacter: (character: Character | null) => void
@@ -32,8 +33,7 @@ export const SelectingPage: React.FC<Props> = ({
     if (pageRef.current) {
       pageRef.current.focus();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setFirstSelectedCharacter, setSecondSelectedCharacter]);
 
   const playSelectingSound = useCallback(() => {
     new Audio(selectingSound).play();
@@ -44,63 +44,52 @@ export const SelectingPage: React.FC<Props> = ({
   }, []);
 
   const handleCharacterChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.code === 'KeyD') {
-      handleSwitch('right', currentFirstCharacter, setCurrentFirstCharacter, isFirstSelected)
-      playSelectingSound();
-    }
+    switch (event.code) {
+      case 'KeyD':
+      case 'KeyA':
+      case 'KeyS':
+      case 'KeyW':
+        if (!isFirstSelected) {
+          handleSwitch(getDirectionByKeyCode(event.code), setCurrentFirstCharacter)
+          playSelectingSound();
+        }
+        break;
 
-    if (event.code === 'KeyA') {
-      handleSwitch('left', currentFirstCharacter, setCurrentFirstCharacter, isFirstSelected)
-      playSelectingSound();
-    }
+      case 'ArrowRight':
+      case 'ArrowLeft':
+      case 'ArrowDown':
+      case 'ArrowUp':
+        if (!isSecondSelected) {
+          handleSwitch(getDirectionByKeyCode(event.code), setCurrentSecondCharacter)
+          playSelectingSound();
+        }
+        break;
 
-    if (event.code === 'KeyS') {
-      handleSwitch('down', currentFirstCharacter, setCurrentFirstCharacter, isFirstSelected)
-      playSelectingSound();
-    }
+      case 'Space':
+        if (!isFirstSelected) {
+          setFirstSelectedCharacter(characters[currentFirstCharacter]);
+          setIsFirstSelected(true);
 
-    if (event.code === 'KeyW') {
-      handleSwitch('up', currentFirstCharacter, setCurrentFirstCharacter, isFirstSelected)
-      playSelectingSound();
-    }
+          playAcceptingSound()
+        }
+        break;
 
-    if (event.code === 'ArrowRight') {
-      handleSwitch('right', currentSecondCharacter, setCurrentSecondCharacter, isSecondSelected)
-      playSelectingSound();
-    }
+      case 'Enter':
+        if (!isSecondSelected) {
+          setSecondSelectedCharacter(characters[currentSecondCharacter]);
+          setIsSecondSelected(true);
 
-    if (event.code === 'ArrowLeft') {
-      handleSwitch('left', currentSecondCharacter, setCurrentSecondCharacter, isSecondSelected)
-      playSelectingSound();
-    }
+          playAcceptingSound()
+        }
+        break;
 
-    if (event.code === 'ArrowDown') {
-      handleSwitch('down', currentSecondCharacter, setCurrentSecondCharacter, isSecondSelected)
-      playSelectingSound();
-    }
-
-    if (event.code === 'ArrowUp') {
-      handleSwitch('up', currentSecondCharacter, setCurrentSecondCharacter, isSecondSelected)
-      playSelectingSound();
-    }
-
-    if (event.code === 'Space') {
-      setFirstSelectedCharacter(characters[currentFirstCharacter]);
-      setIsFirstSelected(true);
-
-      playAcceptingSound()
-    }
-
-    if (event.code === 'Enter') {
-      setSecondSelectedCharacter(characters[currentSecondCharacter]);
-      setIsSecondSelected(true);
-
-      playAcceptingSound()
+        default:
+          return;
     }
   }
 
   return (
-    <div className="SelectingPage" tabIndex={0} onKeyDown={handleCharacterChange} ref={pageRef}>
+    <section className="SelectingPage" tabIndex={0} onKeyDown={handleCharacterChange} ref={pageRef}>
       <h2 className="SelectingPage__title">Select your fighter</h2>
       <CharactersList
         currentFirstCharacter={currentFirstCharacter}
@@ -111,6 +100,6 @@ export const SelectingPage: React.FC<Props> = ({
       <p className="SelectingPage__map">
         {`Kombat zone: ${location}`}
       </p>
-    </div>
+    </section>
   );
 }

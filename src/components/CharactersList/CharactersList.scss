@@ -1,4 +1,7 @@
 .CharactersList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
@@ -14,13 +17,14 @@
 
     @each $character in $characters {
       &--#{$character} {
-        background-image: url('./characters-icons/#{$character}.png');
+        background-image: url('../../images/characters-icons/#{$character}.png');
       }
     }
 
     &--current-first {
       position: relative;
       outline: 5px solid rgb(1, 204, 1);
+
       &::after {
         position: absolute;
         top: 15px;
@@ -35,6 +39,7 @@
     &--current-second {
       position: relative;
       outline: 5px solid rgb(255, 29, 29);
+
       &::after {
         position: absolute;
         bottom: 15px;
@@ -48,6 +53,7 @@
 
     &--current-both {
       position: relative;
+
       &::after {
         position: absolute;
         top: 15px;
@@ -72,6 +78,7 @@
     &--selected-first {
       position: relative;
       outline: 5px solid rgb(0, 117, 0);
+
       &::after {
         position: absolute;
         top: 15px;
@@ -86,6 +93,7 @@
     &--selected-second {
       position: relative;
       outline: 5px solid rgb(165, 17, 17);
+
       &::after {
         position: absolute;
         bottom: 15px;
@@ -99,6 +107,7 @@
 
     &--selected-both {
       position: relative;
+
       &::after {
         position: absolute;
         top: 15px;
