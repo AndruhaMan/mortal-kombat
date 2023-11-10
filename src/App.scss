@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'MortalKombat';
+  src: url('./fonts/Mortal-Kombat-3-Regular.ttf');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  font-family: MortalKombat;
+  font-style: italic;
+  color: white;
+  background-color: #000;
+  letter-spacing: 3px;
+}

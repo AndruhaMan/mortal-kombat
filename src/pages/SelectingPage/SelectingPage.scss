@@ -1,0 +1,27 @@
+.SelectingPage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 560px;
+  width: 750px;
+  background-image: url('../../images/selecting-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  outline: none;
+
+  &__title {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 36px;
+    text-shadow: 3px 2px black;
+  }
+
+  &__map {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-shadow: 3px 2px black;
+  }
+}

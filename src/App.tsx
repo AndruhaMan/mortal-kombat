@@ -1,26 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react'
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import './App.scss';
+import { SelectingPage } from './pages/SelectingPage';
+import { Character } from './types/character';
+import { VsPage } from './pages/VsPage';
+import { FatalityPage } from './pages/FatalityPage';
 
-function App() {
+export const App = () => {
+  const [firstSelectedCharacter, setFirstSelectedCharacter] = useState<Character | null>(null);
+  const [secondSelectedCharacter, setSecondSelectedCharacter] = useState<Character | null>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (firstSelectedCharacter && secondSelectedCharacter) {
+      setTimeout(() => {
+        navigate('/vs');
+      }, 2000);
+    }
+  }, [firstSelectedCharacter, secondSelectedCharacter]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <main className="App">
+      <Routes>
+        <Route
+          path='/'
+          element={<Navigate to="/select" />}
+        />
 
-export default App;
+        <Route
+          path="/select"
+          element={
+            <SelectingPage
+              setFirstSelectedCharacter={setFirstSelectedCharacter}
+              setSecondSelectedCharacter={setSecondSelectedCharacter}
+            />
+          }
+        />
+
+        <Route
+          path="/vs"
+          element={
+            <VsPage
+              firstSelectedCharacter={firstSelectedCharacter}
+              secondSelectedCharacter={secondSelectedCharacter}
+            />
+          }
+        />
+
+        <Route
+          path="/fatality"
+          element={
+            <FatalityPage />
+          }
+        />
+      </Routes>
+    </main>
+  );
+};
