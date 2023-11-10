@@ -1,16 +1,37 @@
 {
   "files": {
-    "main.css": "/mortal-kombat/static/css/main.f855e6bc.css",
-    "main.js": "/mortal-kombat/static/js/main.103472d2.js",
-    "static/js/787.37267249.chunk.js": "/mortal-kombat/static/js/787.37267249.chunk.js",
-    "static/media/logo.svg": "/mortal-kombat/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/mortal-kombat/index.html",
-    "main.f855e6bc.css.map": "/mortal-kombat/static/css/main.f855e6bc.css.map",
-    "main.103472d2.js.map": "/mortal-kombat/static/js/main.103472d2.js.map",
-    "787.37267249.chunk.js.map": "/mortal-kombat/static/js/787.37267249.chunk.js.map"
+    "main.css": "/static/css/main.9b0cd940.css",
+    "main.js": "/static/js/main.50bb7924.js",
+    "static/media/sheeva.png": "/static/media/sheeva.acfa20d4e0208d39d867.png",
+    "static/media/nightwolf.png": "/static/media/nightwolf.29ef6c63ba7d4e7f2ccf.png",
+    "static/media/kabal.png": "/static/media/kabal.e7b057b01295a95ccfc1.png",
+    "static/media/cyrax.png": "/static/media/cyrax.dbb284c75c6b72d056d9.png",
+    "static/media/kitana.png": "/static/media/kitana.81d711e0bd50e118f996.png",
+    "static/media/kunglao.png": "/static/media/kunglao.48077feea24e954e8802.png",
+    "static/media/reptile.png": "/static/media/reptile.5a0871cfb5fbad882639.png",
+    "static/media/jax.png": "/static/media/jax.83d3b0a42fb64a6a2ef2.png",
+    "static/media/kano.png": "/static/media/kano.123b4c50aa6ba262c05f.png",
+    "static/media/subzero.png": "/static/media/subzero.46e122491730a41d34c8.png",
+    "static/media/sektor.png": "/static/media/sektor.85246ee5b86837064a0e.png",
+    "static/media/shangtsung.png": "/static/media/shangtsung.072ac88c6ec58df2dd14.png",
+    "static/media/scorpion.png": "/static/media/scorpion.7592a6e487f8e5f6a3f1.png",
+    "static/media/ermac.png": "/static/media/ermac.f05cbc0e2391e5137606.png",
+    "static/media/liukang.png": "/static/media/liukang.23079424bf710380a92d.png",
+    "static/media/vs-sound.mp3": "/static/media/vs-sound.575df5d9837f12026cc3.mp3",
+    "static/media/fatality-sound.mp3": "/static/media/fatality-sound.0e9fbf7f984e49a8fd3b.mp3",
+    "static/media/Mortal-Kombat-3-Regular.ttf": "/static/media/Mortal-Kombat-3-Regular.49b038be0f5b0de66024.ttf",
+    "static/media/background.png": "/static/media/background.acb7151e70c06b95a469.png",
+    "static/media/background.jpg": "/static/media/background.a5a61668fa4dc6646cbc.jpg",
+    "static/media/accepting-sound.mp3": "/static/media/accepting-sound.6f622caab5802a64a6b7.mp3",
+    "static/media/fatality.png": "/static/media/fatality.2f6f4ac10cc4fce9bc75.png",
+    "static/media/selecting-sound.mp3": "/static/media/selecting-sound.b070217cc3ec9826fd89.mp3",
+    "static/media/toasty.mp3": "/static/media/toasty.1485714c16fe65b0ad90.mp3",
+    "index.html": "/index.html",
+    "main.9b0cd940.css.map": "/static/css/main.9b0cd940.css.map",
+    "main.50bb7924.js.map": "/static/js/main.50bb7924.js.map"
   },
   "entrypoints": [
-    "static/css/main.f855e6bc.css",
-    "static/js/main.103472d2.js"
+    "static/css/main.9b0cd940.css",
+    "static/js/main.50bb7924.js"
   ]
 }
