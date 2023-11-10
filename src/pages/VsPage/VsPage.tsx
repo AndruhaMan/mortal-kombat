@@ -7,6 +7,7 @@ import { incrementNumberInArray } from '../../utils/helpers';
 import sound from './vs-sound.mp3';
 
 import './VsPage.scss';
+import { Toasty } from '../../components/Toasty';
 
 type Props = {
   firstSelectedCharacter: Character | null,
@@ -16,7 +17,7 @@ type Props = {
 export const VsPage: React.FC<Props> = ({ firstSelectedCharacter, secondSelectedCharacter }) => {
   const navigate = useNavigate();
   const [versusCodes, setVersusCodes] = useState([0, 0, 0, 0, 0, 0]);
-  const [isFatality, setIsFatality] = useState(false);
+  const [isToasty, setIsToasty] = useState(false);
   const pageRef = useRef<HTMLDivElement>(null);
   const audio = useRef(new Audio(sound)).current;
 
@@ -29,20 +30,22 @@ export const VsPage: React.FC<Props> = ({ firstSelectedCharacter, secondSelected
 
     const timer = setTimeout(() => {
       navigate('/select');
-    }, 4000);
-
-    if (isFatality) {
-      navigate('/fatality');
-    }
+    }, 4000)
 
     return () => {
       clearTimeout(timer);
     }
-  }, [isFatality]);
+  }, []);
 
   useEffect(() => {
-    if (versusCodes.join('') === '666666') {
-      setIsFatality(true);
+    const code = versusCodes.join('');
+
+    if (code === '666666') {
+      navigate('/fatality');
+    }
+
+    if (code === '121212') {
+      setIsToasty(true);
     }
   }, [versusCodes]);
 
@@ -90,6 +93,10 @@ export const VsPage: React.FC<Props> = ({ firstSelectedCharacter, secondSelected
 
         <VersusCodes versusCodes={versusCodes} />
       </div>
+
+      {isToasty && (
+        <Toasty />
+      )}
     </div>
   );
 }
